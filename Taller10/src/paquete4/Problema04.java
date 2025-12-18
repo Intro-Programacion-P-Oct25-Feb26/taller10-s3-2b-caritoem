@@ -17,56 +17,54 @@ public class Problema04 {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.US);
-        int[][] A = new int[3][2];
-        int[][] B = new int[3][2];
-
-        String reporte = "";
-
-        System.out.println("Ingrese los valores de A (3x2):");
-        for (int i = 0; i < 3; i++) {
-            for (int c = 0; c < 2; c++) {
-                System.out.printf("A[%d][%d]: ", i, c);
-                A[i][c] = entrada.nextInt();
+        int[][] matA = new int[3][2];
+        int[][] matB = new int[3][2];
+        boolean mayorIgual = true;
+        boolean estricto = false;
+        System.out.println("Matriz A");
+        for (int f = 0; f < matA.length; f++) { 
+            for (int c = 0; c < matA[f].length; c++) { 
+                System.out.printf("Ingrese los valores de A en la posicion [%s]"
+                        + "[%s]\n", f, c);
+                matA[f][c] = entrada.nextInt();
+            }
+        }
+        System.out.println("Matriz B");
+        for (int f = 0; f < matB.length; f++) { 
+            for (int c = 0; c < matB[f].length; c++) {
+                System.out.printf("Ingrese los valores de B en la posicion [%s] "
+                        + "[%s]\n", f, c);
+                matB[f][c] = entrada.nextInt();
             }
         }
 
-        System.out.println("\nIngrese los valores de  B (3x2):");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
-                System.out.printf("B[%d][%d]: ", i, j);
-                B[i][j] = entrada.nextInt();
-            }
-            reporte = String.format("%s\n", reporte);
+        System.out.println("La matriz A tiene los valores");
+        for (int f = 0; f < matA.length; f++) {
+            System.out.printf("%s\t%s\n", matA[f][0], matA[f][1]);
         }
 
-        int contadorMenores = 0;
-        int contadorMayores = 0;
-        int contadorIguales = 0;
+        System.out.println("La matriz B tiene los valores");
+        for (int f = 0; f < matB.length; f++) {
+            System.out.printf("%s\t%s\n", matB[f][0], matB[f][1]);
+        }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int f = 0; f < matA.length; f++) {
+            for (int c = 0; c < matA[f].length; c++) {
+                if (matB[f][c] > matA[f][c]) {
+                    mayorIgual = false;
+                }
 
-                if (A[i][j] < B[i][j]) {
-                    contadorMenores++;
-                }
-                if (A[i][j] > B[i][j]) {
-                    contadorMayores++;
-                }
-                if (A[i][j] == B[i][j]) {
-                    contadorIguales++;
+                if (matA[f][c] > matB[f][c]) {
+                    estricto = true;
                 }
             }
         }
 
-        if (contadorIguales == 6) {
-            reporte = String.format("%s\nLa matriz A es igual a la matriz B", reporte);
-
-        } else if (contadorMenores == 0 && contadorMayores > 0) {
-            reporte = String.format("%s\nLa matriz A es mayor que la matriz B", reporte);
-
+        System.out.println("\nResultado");
+        if (mayorIgual == true && estricto == true) {
+            System.out.println("La matriz A es mayor que la matriz B");
         } else {
-            reporte = String.format("%s\nLa matriz A no es mayor que la matriz B", reporte);
+            System.out.println("La matriz A no es mayor que la matriz B");
         }
-        System.out.println(reporte);
     }
 }
