@@ -27,7 +27,7 @@ public class Problema06 {
         for (int i = 0; i < 5; i++) {
             for (int c = 0; c < 6; c++) {
                 System.out.printf("Valor [%d][%d]: ", i, c);
-                original[i][j] = entrada.nextDouble();
+                original[i][c] = entrada.nextDouble();
             }
         }
 
